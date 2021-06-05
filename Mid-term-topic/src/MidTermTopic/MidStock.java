@@ -134,23 +134,7 @@ public class MidStock {
 		stockDAO.closeSQLserverConnection();	//關閉連線
 	}
 	
-	//要修改的項目
-	public static String updateItem(int item){
-		String updateItem = ""; 
-		ArrayList<String> selectItem = new ArrayList<String>();
-		selectItem.add("company");		
-		selectItem.add("company_code");		
-		selectItem.add("year_Revenue");		
-		selectItem.add("last_year_Revenue");		
-		selectItem.add("Revenue_IncreaseOrReduce");		
-		selectItem.add("profit_Loss_After_Tax");		
-		selectItem.add("last_year_Profit_Loss_After_Tax");		
-		selectItem.add("profit_Loss_After_Tax_IncreaseOrReduce");
-		selectItem.add("EPS");
-		updateItem = selectItem.get(item);
-		System.out.println(updateItem);
-		return updateItem;
-	}
+
 	
 
 }
