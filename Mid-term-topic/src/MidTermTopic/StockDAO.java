@@ -30,7 +30,6 @@ public class StockDAO {
 						"password = qwe74159";
 		try {
 			conn = DriverManager.getConnection(sqlStr);
-//			System.out.println("connect Success!!!");
 		} catch (SQLException e) {
 			System.out.println("Connect Something Wrong");
 			System.out.println(e.getMessage());
