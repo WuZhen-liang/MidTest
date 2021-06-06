@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class StockDAO {
 						"password = qwe74159";
 		try {
 			conn = DriverManager.getConnection(sqlStr);
-			System.out.println("connect Success!!!");
+//			System.out.println("connect Success!!!");
 		} catch (SQLException e) {
 			System.out.println("Connect Something Wrong");
 			System.out.println(e.getMessage());
@@ -42,7 +43,7 @@ public class StockDAO {
 		if (conn != null ) {
 			try {
 				conn.close();
-				System.out.println("close finish!!!");
+				System.out.println("結束查詢!!!");
 			} catch (SQLException e) {
 				System.out.println("disconnect Something Wrong");
 				e.printStackTrace();
@@ -51,7 +52,7 @@ public class StockDAO {
 	}
 	//新增資料庫資料
 	public void addDataToSQL(Stock s) throws SQLException {
-		String sqlStr = "INSERT INTO stockImfromation(Company,Company_code,year_Revenue,Last_year_Revenue,Revenue_IncreaseOrReduce,Profit_Loss_After_Tax,Last_year_Profit_Loss_After_Tax,Profit_Loss_After_Tax_IncreaseOrReduce,EPS)"+
+		String sqlStr = "INSERT INTO stockInformation(Company,Company_code,year_Revenue,Last_year_Revenue,Revenue_IncreaseOrReduce,Profit_Loss_After_Tax,Last_year_Profit_Loss_After_Tax,Profit_Loss_After_Tax_IncreaseOrReduce,EPS)"+
 						"VALUES(?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prestate1 = conn.prepareStatement(sqlStr);
 		prestate1.setString(1, s.getCompany());	
@@ -71,15 +72,14 @@ public class StockDAO {
 		Set<String> keySet = mapFeature.keySet();
 		try {
 			for (String key :keySet) {
-//				System.out.println(mapFeature.get(key));
-				if (key.equals("company")) {					
-					String sqlStr = "UPDATE stockImfromation SET "+ key + "='" + mapFeature.get(key) + "' WHERE Company_Code = "+ updateComCode;
+				if (key.equals("company") || key.equals("profit_Loss_After_Tax_IncreaseOrReduce")) {					
+					String sqlStr = "UPDATE stockInformation SET "+ key + "='" + mapFeature.get(key) + "' WHERE Company_Code = "+ updateComCode;
 					Statement statement = conn.createStatement();
 					statement.execute(sqlStr);
 					statement.close();
 				}else {
 					double getvalue = Double.parseDouble(mapFeature.get(key));
-					String sqlStr = "UPDATE stockImfromation SET "+ key + "=" + getvalue + " WHERE Company_Code = "+ updateComCode;					
+					String sqlStr = "UPDATE stockInformation SET "+ key + "=" + getvalue + " WHERE Company_Code = "+ updateComCode;					
 					Statement statement = conn.createStatement();
 					statement.execute(sqlStr);
 					statement.close();				
@@ -93,7 +93,7 @@ public class StockDAO {
 
 	//刪除資料方法 用company_code
 	public void deleteDataByCompanyCode(int CompanyCode) {
-		String sqlStr = "Delete FROM stockImfromation WHERE company_code = ?";
+		String sqlStr = "Delete FROM stockInformation WHERE company_code = ?";
 		try {
 			PreparedStatement prestate2 = conn.prepareStatement(sqlStr);
 			prestate2.setInt(1, CompanyCode);
@@ -106,7 +106,7 @@ public class StockDAO {
 	}
 	//查詢 用company_code 全部資料
 	public Stock queryByCompanyCode(int company_code) throws SQLException {
-		String sqlStr = "SELECT * FROM stockImfromation WHERE company_code = ?";
+		String sqlStr = "SELECT * FROM stockInformation WHERE company_code = ?";
 		PreparedStatement prestate3 = conn.prepareStatement(sqlStr);
 		prestate3.setInt(1, company_code);
 		ResultSet rs = prestate3.executeQuery();
@@ -129,21 +129,30 @@ public class StockDAO {
 		return s;
 	}
 //	依股票代碼查詢並將想要查詢的項目顯示
-//	public Stock querySelectItem() throws SQLException {
-//		String sqlStr = "SELECT * FROM stockImfromation WHERE company_code = ? ";
-//		PreparedStatement prestate4 = conn.prepareStatement(sqlStr);
-//		ResultSet rs = prestate4.executeQuery();
-//		Scanner selectItem = new Scanner(System.in);
-//		int select = selectItem.nextInt();
-//		System.out.println("請輸入您要的項目:\n1:company\n2:company_code\n3:year_Revenue\n4:last_year_Revenue\n5:Revenue_IncreaseOrReduce\n6:profit_Loss_After_Tax\n7:last_year_Profit_Loss_After_Tax\n8:profit_Loss_After_Tax_IncreaseOrReduce\n9:EPS");
-//		Stock s =null;
-//		while(rs.next()) {
-//			
-//			s = new Stock();
-//			
-//			
-//			
-//		}
+	public Stock queryByCompanyCode_someData(String featureNum ,int company_code) throws SQLException {
+		String sqlStr = "SELECT * FROM stockInformation WHERE company_code = ?";	
+		PreparedStatement prestate3 = conn.prepareStatement(sqlStr);
+		prestate3.setInt(1, company_code);
+		ResultSet rs = prestate3.executeQuery();		
+//		String string = rs.getString(sqlStr);
+//		System.out.println("rs.getString"+string);
+		Stock s = null;
+		if (rs.next()) {
+			s = new Stock();
+			s.setCompany(rs.getString("Company"));
+			s.setCompanyCode(rs.getInt("Company_code"));
+			s.setYearRevenue(rs.getDouble("year_Revenue"));
+			s.setLastYearRevenue(rs.getDouble("last_year_Revenue"));
+			s.setRevenueIncreaseOrReduce(rs.getDouble("Revenue_IncreaseOrReduce"));
+			s.setProfitLossAfterTax(rs.getDouble("profit_Loss_After_Tax"));
+			s.setLastYearProfitLossAfterTax(rs.getDouble("last_year_Profit_Loss_After_Tax"));
+			s.setProfitLossAfterTaxIncreaseOrReduce(rs.getString("profit_Loss_After_Tax_IncreaseOrReduce"));
+			s.setEPS(rs.getDouble("EPS"));
+		}
+		rs.close();
+		prestate3.close();
+		return s;
+	}
 				
 	
 
