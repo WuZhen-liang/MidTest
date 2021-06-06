@@ -141,11 +141,11 @@ public class MidStock {
 						String itemOfdata = scannerString.nextLine().trim();
 						ArrayList<String> featureNum = new ArrayList<String>(Arrays.asList(itemOfdata.split(",")));
 						
-						ArrayList<String> feature = showInfo.transferFeatureNumToFeature(featureNum);
+						ArrayList<String> feature = showInfo.transferFeatureNumToFeature(featureNum);  //回傳使用者輸入的項目
 						Map<String, String> mapFeature = new HashMap<String, String>();
 						
 						for(int i = 0 ; i < feature.size();i++) {
-							System.out.print(showInfo.getchinsesFeatureArray_update().get(i)+":");
+							System.out.print(showInfo.getChinese().get(feature.get(i))+":");
 							String userData  = scannerString.nextLine().trim();
 							mapFeature.put(feature.get(i), userData);							
 						}

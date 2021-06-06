@@ -111,6 +111,17 @@ public class ShowInfo {
 		}
 		return res;
 	}
+	public ArrayList<String> transferFeatureNumToFeature_update(ArrayList<String> numArray){
+		ArrayList<String> selectItem = getchinsesFeatureArray_update();
+		ArrayList<String> featureArray = new ArrayList<String>();
+		for(String feature : numArray) {
+			int featureNum = Integer.parseInt(feature)-1;
+			String item = selectItem.get(featureNum);
+			featureArray.add(item);
+		}		
+		return featureArray ;
+	}
+	
 	public ArrayList<String> getchinsesFeatureArray_update(){
 		ArrayList<String> selectItem = new ArrayList<String>();
 		selectItem.add("公司名稱");				
