@@ -61,11 +61,11 @@ public class MidStock {
 					newStock.setRevenueIncreaseOrReduce(revenueIncreaseOrReduce);
 					//輸入公司稅後淨利
 					System.out.print(showInfo.getchinsesFeatureArray().get(5)+":");
-					Double  profitLossAfterTax = scannerDouble.nextDouble();
+					Double profitLossAfterTax = scannerDouble.nextDouble();
 					newStock.setProfitLossAfterTax(profitLossAfterTax);
 					//輸入公司去年稅後淨利
 					System.out.print(showInfo.getchinsesFeatureArray().get(6)+":");
-					Double  lastYearProfitLossAfterTax = scannerDouble.nextDouble();
+					Double lastYearProfitLossAfterTax = scannerDouble.nextDouble();
 					newStock.setLastYearProfitLossAfterTax(lastYearProfitLossAfterTax);
 					//輸入公司稅後淨利與去年同比增減
 					System.out.print(showInfo.getchinsesFeatureArray().get(7)+":");
@@ -73,7 +73,7 @@ public class MidStock {
 					newStock.setProfitLossAfterTaxIncreaseOrReduce(profitLossAfterTaxIncreaseOrReduce);
 					//輸入公司每股盈餘(EPS)
 					System.out.print(showInfo.getchinsesFeatureArray().get(8)+":");
-					Double  EPS = scannerDouble.nextDouble();
+					Double EPS = scannerDouble.nextDouble();
 					newStock.setEPS(EPS);					
 					try {
 						stockDAO.addDataToSQL(newStock);
