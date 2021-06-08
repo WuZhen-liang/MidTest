@@ -13,8 +13,8 @@ import java.util.Iterator;
 
 import javax.print.CancelablePrintJob;
 
-import org.apache.logging.log4j.core.appender.rolling.action.IfAccumulatedFileCount;
-import org.apache.logging.log4j.core.util.WatcherFactory;
+//import org.apache.logging.log4j.core.appender.rolling.action.IfAccumulatedFileCount;
+//import org.apache.logging.log4j.core.util.WatcherFactory;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.formula.functions.Count;
@@ -25,7 +25,7 @@ import org.openxmlformats.schemas.spreadsheetml.x2006.main.STSourceType;
 
 public class ioDataInportData {
 	 	
-			
+	//將撈下來的資料丟入資料庫		
 	public static void main(String[] args) throws Exception {
 		Stock stock;
 		StockDAO stockDAO = StockDAOFactory.createstockDAO();

@@ -6,13 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-examples-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-excelant-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-ooxml-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-ooxml-schemas-4.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/User/Desktop/mid/poi-4.0.1/poi-scratchpad-4.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/JDBCfile/mssql-jdbc-9.2.1.jre11.jar"/>
+	<classpathentry kind="lib" path="C:/JDBCfile/jdbc_workspace/lib/mssql-jdbc-7.2.2.jre8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
